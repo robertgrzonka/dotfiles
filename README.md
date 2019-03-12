@@ -1,5 +1,6 @@
-# Dotfiles
-Just dotfiles.
+<img src='./dotfiles.svg' width='150px'>
+
+> Just dotfiles.
 
 ## Why?
 
