@@ -1,5 +1,5 @@
-# dotfiles
-Dotfiles.
+# Dotfiles
+Just dotfiles.
 
 ## Why?
 
