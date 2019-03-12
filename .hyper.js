@@ -3,139 +3,142 @@
 // See https://hyper.is#cfg for all currently supported options.
 
 module.exports = {
-	config: {
-		// Choose either "stable" for receiving highly polished,
-		// or "canary" for less polished but more frequent updates
-		updateChannel: 'canary',
+  config: {
+    // Choose either "stable" for receiving highly polished,
+    // or "canary" for less polished but more frequent updates
+    updateChannel: 'canary',
 
-		// default font size in pixels for all tabs
-		fontSize: 13,
+    // default font size in pixels for all tabs
+    fontSize: 12,
+    lineHeight: 1.2,
 
-		// font family with optional fallbacks
-		fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    // font family with optional fallbacks
+    fontFamily: [
+      'Fira Code'
+    ],
 
-		// uncomment for Macbook Air for better lookout
-		// fontWeight: 'bold',
-		// fontWeightBold: 'normal',
 
-		// terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-		cursorColor: 'rgba(248,28,229,0.8)',
+    // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
+    cursorColor: '#FF0080',
 
-		// `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
-		cursorShape: 'BLOCK',
+    // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
+    cursorShape: 'BLOCK',
 
-		// set to true for blinking cursor
-		cursorBlink: true,
+    // set to true for blinking cursor
+    cursorBlink: true,
 
-		// color of the text
-		foregroundColor: '#fff',
+    // color of the text
+    foregroundColor: '#fff',
 
-		// terminal background color
-		backgroundColor: '#000',
+    // terminal background color
+    backgroundColor: '#000',
 
-		// border color (window, tabs)
-		borderColor: '#000',
+    // border color (window, tabs)
+    borderColor: '#222',
 
-		// custom css to embed in the main window
-		css: '',
+    // custom css to embed in the main window
+    css: '',
 
-		// custom css to embed in the terminal window
-		termCSS: '',
+    // custom css to embed in the terminal window
+    termCSS: '',
 
-		// set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
-		// default: `false` on Linux, `true` on Windows (ignored on macOS)
-		showHamburgerMenu: '',
+    // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
+    // default: `false` on Linux, `true` on Windows (ignored on macOS)
+    showHamburgerMenu: '',
 
-		// set to `false` if you want to hide the minimize, maximize and close buttons
-		// additionally, set to `'left'` if you want them on the left, like in Ubuntu
-		// default: `true` on windows and Linux (ignored on macOS)
-		showWindowControls: '',
+    // set to `false` if you want to hide the minimize, maximize and close buttons
+    // additionally, set to `'left'` if you want them on the left, like in Ubuntu
+    // default: `true` on windows and Linux (ignored on macOS)
+    showWindowControls: '',
 
-		// custom padding (css format, i.e.: `top right bottom left`)
-		padding: '14px 20px',
+    // custom padding (css format, i.e.: `top right bottom left`)
+    padding: '10px 16px',
 
-		// the full list. if you're going to provide the full color palette,
-		// including the 6 x 6 color cubes and the grayscale map, just provide
-		// an array here instead of a color map object
-		colors: {
-			black: '#000000',
-			red: '#ff6473',
-			green: '#50E3C2',
-			yellow: '#F8E71C',
-			blue: '#0076FF',
-			magenta: '#FF0080',
-			orange: '#F5A623',
-			cyan: 'cyan',
-			white: '#d0d0d0',
-			lightBlack: '#333333',
-			lightRed: '#ff6473',
-			lightGreen: '#6ef7c8',
-			lightYellow: '#ffff00',
-			lightBlue: '#53c7f0',
-			lightMagenta: '#cc00ff',
-			lightCyan: '#00ffff',
-			lightWhite: '#FAFAFA'
-		},
+    // the full list. if you're going to provide the full color palette,
+    // including the 6 x 6 color cubes and the grayscale map, just provide
+    // an array here instead of a color map object
+    colors: {
+      black: '#000000',
+      lightred: '#ff6473',
+      green: '#50E3C2',
+      yellow: '#F8E71C',
+      blue: '#0076FF',
+      magenta: '#cc00ff',
+      orange: '#F5A623',
+      cyan: 'cyan',
+      white: '#d0d0d0',
+      darkgray: '#222222',
+      red: '#ff6473',
+      lightgreen: '#6ef7c8',
+      lightyellow: '#ffff00',
+      lightblue: '#53c7f0',
+      lightcyan: '#00ffff'
+    },
 
-		// the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
-		// if left empty, your system's login shell will be used by default
-		//
-		// Windows
-		// - Make sure to use a full path if the binary name doesn't work
-		// - Remove `--login` in shellArgs
-		//
-		// Bash on Windows
-		// - Example: `C:\\Windows\\System32\\bash.exe`
-		//
-		// Powershell on Windows
-		// - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-		shell: '',
+    hyperBorder: {
+      borderWidth: '1px'
+    },
 
-		// for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
-		// by default ['--login'] will be used
-		shellArgs: [ '--login' ],
+    // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
+    // if left empty, your system's login shell will be used by default
+    //
+    // Windows
+    // - Make sure to use a full path if the binary name doesn't work
+    // - Remove `--login` in shellArgs
+    //
+    // Bash on Windows
+    // - Example: `C:\\Windows\\System32\\bash.exe`
+    //
+    // Powershell on Windows
+    // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
+    shell: '',
 
-		// for environment variables
-		env: {},
+    // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
+    // by default ['--login'] will be used
+    shellArgs: [ '--login' ],
 
-		// set to false for no bell
-		bell: 'SOUND',
+    // for environment variables
+    env: {},
 
-		// if true, selected text will automatically be copied to the clipboard
-		copyOnSelect: true
+    // set to false for no bell
+    bell: false,
 
-		// if true, on right click selected text will be copied or pasted if no
-		// selection is present (true by default on Windows)
-		// quickEdit: true
+    // if true, selected text will automatically be copied to the clipboard
+    copyOnSelect: true
 
-		// URL to custom bell
-		// bellSoundURL: 'http://example.com/bell.mp3',
+    // if true, on right click selected text will be copied or pasted if no
+    // selection is present (true by default on Windows)
+    // quickEdit: true
 
-		// for advanced config flags please refer to https://hyper.is/#cfg
-	},
+    // URL to custom bell
+    // bellSoundURL: 'http://example.com/bell.mp3',
 
-	// a list of plugins to fetch and install from npm
-	// format: [@org/]project[#version]
-	// examples:
-	//   `hyperpower`
-	//   `@company/project`
-	//   `project#1.0.1`
-	plugins: [
-		'hyper-spotify',
-		'hyperlinks',
-		'hyper-blink',
-		'hyper-dark-scrollbar',
-		'htyt',
-		'hypergoogle'
-	],
+    // for advanced config flags please refer to https://hyper.is/#cfg
+  },
 
-	// in development, you can create a directory under
-	// `~/.hyper_plugins/local/` and include it here
-	// to load it and avoid it being `npm install`ed
-	localPlugins: [],
+  // a list of plugins to fetch and install from npm
+  // format: [@org/]project[#version]
+  // examples:
+  //   `hyperpower`
+  //   `@company/project`
+  //   `project#1.0.1`
+  plugins: [
+    'hyper-spotify',
+    'hyperlinks',
+    'hyper-blink',
+    'hyper-dark-scrollbar',
+    'htyt',
+    'hypergoogle',
+    'hyper-website-theme'
+  ],
 
-	keymaps: {
-		// Example
-		// 'window:devtools': 'cmd+alt+o',
-	}
+  // in development, you can create a directory under
+  // `~/.hyper_plugins/local/` and include it here
+  // to load it and avoid it being `npm install`ed
+  localPlugins: [],
+
+  keymaps: {
+    // Example
+    // 'window:devtools': 'cmd+alt+o',
+  }
 }

@@ -1,12 +1,5 @@
 #!/usr/bin/env zsh
 
-##########################
-#                        #
-#  robertgrzonka © 2018  #
-#                        #
-##########################
-
-
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -91,3 +84,37 @@ function gi() {
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+function open_repo() {
+    take $1
+    yarn init -y
+    touch license.md contributing.md
+    echo '#' $1 >> readme.md
+    echo "Repository has been opened. It's full address is: https://github.com/robertgrzonka/"$1
+}
+
+function git_init() {
+    curl -H "Authorization: token <PUT_TOKEN_HERE>" -X POST -i "https://api.github.com/user/repos" -d '{"scopes":["public_repo"], "name": "'$1'"}'
+    git init
+    git remote add origin git@github.com:robertgrzonka/$1.git
+    git add .
+    git commit -m 'init: initial commit'
+    git push -u origin master
+}
+
+function open_github_repo {
+    echo open_repo $1
+    echo git_init $1
+}
+
+# Converts and saves YouTube video to mp3
+function convert_to_mp3() {
+    cd ~/YouTube
+    youtube-dl --extract-audio --audio-format mp3 $1 ;
+    cd
+}
+
+# Open your Project repository in Visual Studio Code
+function open_project() {
+    open "$Projects/$1" ;
+}

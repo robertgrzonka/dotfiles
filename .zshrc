@@ -1,14 +1,13 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/Library/Python/3.7/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/robertgrzonka/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="robertgrzonka"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -40,7 +39,7 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -49,10 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -63,25 +59,27 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  cp
-  emoji
-  node
-  thefuck
-  encode64
-  httpie
-  github
-  osx
-  aws
-  vscode
-  yarn
-  zsh-syntax-highlighting
+    git
+    git-flow
+    colorize
+    cp
+    emoji
+    node
+    thefuck
+    encode64
+    httpie
+    github
+    osx
+    aws
+    vscode
+    yarn
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
- 
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -89,8 +87,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-  else
+   export EDITOR='vim'
+ else
    export EDITOR='mvim'
  fi
 
@@ -100,15 +98,86 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-autoload -U colors && colors
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/Projects/dotfiles
+autoload -U colors && colors
+
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM.
+function ram() {
+  local sum
+  local items
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+  else
+    sum=0
+    for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
+      sum=$(($i + $sum))
+    done
+    sum=$(echo "scale=2; $sum / 1024.0" | bc)
+    if [[ $sum != "0" ]]; then
+      echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+    else
+      echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+    fi
+  fi
+}
+
+# Shortens GitHub URLs. By Sorin Ionescu <sorin.ionescu@gmail.com>
+function gitio() {
+  local url="$1"
+  local code="$2"
+
+  [[ -z "$url" ]] && print "usage: $0 url code" >&2 && exit
+  [[ -z "$code" ]] && print "usage: $0 url code" >&2 && exit
+
+  curl -s -i 'http://git.io' -F "url=$url" -F "code=$code"
+}
+
+# Gets password from macOS Keychain.
+# $ get-pass github
+function get-pass() {
+  keychain="$HOME/Library/Keychains/login.keychain"
+  security -q find-generic-password -g -l $@ $keychain 2>&1 |\
+    awk -F\" '/password:/ {print $2}';
+}
+
+# Remove all items safely, to Trash (`brew install trash`).
+alias rm='trash'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/usr/local/texlive/2018/bin/i386-linux:$PATH
+export MANPATH=/usr/local/texlive/2018/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2018/texmf-dist/doc/info:$INFOPATH
+export PATH="/usr/local/sbin:$PATH"
+
+### Create function for opening specific Project
+function open_project() {
+    cd Users/rg/Projects/$1
+    code .
+}
+
+# Just write 'fuck' if your command have a typo or you just forget how to call smth :)
+eval $(thefuck --alias)
+
+# Check if file exist:
+function check_if_exists() {
+  if [ -f $1 ]
+  then
+    echo $1 exists
+  else
+    echo $1 not found
+  fi
+}
+
+source ~/functions.sh
+
