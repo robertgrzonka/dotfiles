@@ -114,6 +114,20 @@ function convert_to_mp3() {
     cd
 }
 
+# Converts and saves YouTube video to mp3
+function 2mp3() {
+  DIR=~/Youtube
+  if [ -d "$DIR" ]; then
+	  cd "$DIR" ;
+    youtube-dl --extract-audio --audio-format mp3 $1 ;
+    ..
+    echo "Audio saved in $DIR"
+  else
+    mkdir -p "$DIR" && echo "Folder created. Downloading audio…" ;
+    cd "$DIR" && youtube-dl --extract-audio --audio-format mp3 $1 && cd ;
+    echo "Audio saved in "$DIR""
+  fi
+
 # Open your Project repository in Visual Studio Code
 function open_project() {
     open "$Projects/$1" ;
