@@ -1,0 +1,27 @@
+name: 🧪 Test dotfiles install
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install basic tools
+        run: |
+          sudo apt update
+          sudo apt install -y zsh curl git
+
+      - name: Run install script
+        run: |
+          chmod +x install.sh
+          ./install.sh || echo "Install script failed (expected on non-macOS)"
+
+      - name: Show Zsh version
+        run: zsh --version

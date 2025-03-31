@@ -4,6 +4,11 @@ set -e
 
 ### INSTALL SCRIPT FOR: Robcio's Warp Dotfiles 2025 💻✨
 
+command -v brew >/dev/null 2>&1 || {
+  echo >&2 "Homebrew not installed. Aborting."
+  exit 1
+}
+
 # 1. ZSH & Oh My Zsh
 if ! command -v zsh >/dev/null 2>&1; then
   echo "Installing zsh..."
@@ -73,5 +78,14 @@ done
 # 8. Warp theme (if Warp is installed)
 mkdir -p "$HOME/.warp/themes"
 cp ./warp-theme.json "$HOME/.warp/themes/robcio-hyper.json"
+
+# 9. Link dotfiles
+ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
+ln -sf "$PWD/.aliases.zsh" "$HOME/.aliases.zsh"
+ln -sf "$PWD/.exports.zsh" "$HOME/.exports"
+ln -sf "$PWD/.functions.zsh" "$HOME/.functions"
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$PWD/.gitignore_global" "$HOME/.gitignore_global"
+ln -sf "$PWD/.gitmessage" "$HOME/.gitmessage"
 
 echo "\n✨ Done! Now open Warp and choose your custom theme! \nReload terminal or run: source ~/.zshrc"
