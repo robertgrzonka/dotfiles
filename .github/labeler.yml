@@ -1,0 +1,14 @@
+feat:
+  - '^feat:.*'
+fix:
+  - '^fix:.*'
+docs:
+  - '^docs:.*'
+chore:
+  - '^chore:.*'
+refactor:
+  - '^refactor:.*'
+test:
+  - '^test:.*'
+style:
+  - '^style:.*'
