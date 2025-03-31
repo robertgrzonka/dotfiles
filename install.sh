@@ -51,6 +51,17 @@ brew bundle dump --file=~/Brewfile-backup-$(date +%Y%m%d).txt --force
 # 6. Install from Brewfile
 brew bundle --file=./Brewfile
 
+# VSCode Extensions
+echo "📦 Installing VSCode extensions..."
+if command -v code &>/dev/null; then
+  while read -r extension; do
+    echo "🔧 Installing $extension"
+    code --install-extension "$extension"
+  done <"$(dirname "$0")/vscode/vscode-extensions.txt"
+else
+  echo "⚠️ VSCode command-line tool not found (code). Make sure it's installed."
+fi
+
 # 7. Link dotfiles
 DOTFILES=(.zshrc .aliases.zsh .exports.zsh .functions.zsh .gitconfig .gitignore_global .gitmessage)
 
