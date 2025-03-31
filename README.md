@@ -24,6 +24,7 @@ cd ~/.dotfiles
 - Brewfile included with optional AI tools
 - VSCode settings and extensions
 - ZSH config with custom theme
+- Add Labeler to GitHub Actions
   
 ## 🔐 Security Note
 
