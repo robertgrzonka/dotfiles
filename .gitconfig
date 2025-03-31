@@ -1,0 +1,21 @@
+
+[user]
+  name = Robert Grzonka
+  email = robert@theguys.dev
+
+[core]
+  editor = code --wait
+
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  hist = log --oneline --graph --decorate
+  last = log -1 HEAD
+
+[init]
+  defaultBranch = main
+
+[commit]
+  template = ~/.gitmessage

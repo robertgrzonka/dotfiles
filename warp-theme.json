@@ -1,0 +1,23 @@
+
+{
+  "name": "robcio-hyper",
+  "colors": {
+    "background": "#000000",
+    "foreground": "#ffffff",
+    "cursor": "#f03278",
+    "black": "#000000",
+    "red": "#ff6473",
+    "green": "#87e5da",
+    "yellow": "#ffff00",
+    "blue": "#1d97c1",
+    "magenta": "#ff00ff",
+    "cyan": "#00e5e5",
+    "white": "#ffffff"
+  },
+  "font": {
+    "family": "Fira Code",
+    "size": 12,
+    "line_height": 1.25
+  },
+  "padding": "14px 18px"
+}

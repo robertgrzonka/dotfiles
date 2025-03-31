@@ -1,0 +1,31 @@
+
+# Starship Prompt Config for Robcio ✨
+format = "$username@$hostname $directory $git_branch$git_status $nodejs $rust $package $cmd_duration $time $character"
+add_newline = true
+
+[directory]
+truncation_length = 3
+style = "cyan"
+
+[git_branch]
+symbol = "🌱 "
+style = "purple"
+
+[character]
+success_symbol = "λ"
+error_symbol = "λ"
+style = "bold pink"
+
+[username]
+style_user = "bold green"
+
+[hostname]
+style = "dimmed white"
+
+[cmd_duration]
+min_time = 500
+format = "took [$duration](bold yellow)"
+
+[time]
+disabled = false
+format = "🕒 [$time](dimmed white)"
