@@ -88,4 +88,16 @@ ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.gitignore_global" "$HOME/.gitignore_global"
 ln -sf "$PWD/.gitmessage" "$HOME/.gitmessage"
 
+# Developer environment setup
+read -p "Do you want to initialize your dev environment? (y/n) " answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  if [ -f "./scripts/dev-init.sh" ]; then
+    bash ./scripts/dev-init.sh
+  else
+    echo "❌ Missing ./scripts/dev-init.sh"
+  fi
+else
+  echo "⏭️ Skipping dev environment setup."
+fi
+
 echo "\n✨ Done! Now open Warp and choose your custom theme! \nReload terminal or run: source ~/.zshrc"
